@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Factorial</title>
+	<script type="text/javascript" src="factorion.js"></script>
+	<script>
+
+		// exports ?
+
+		function TestSpeed(options) {
+
+			var output,
+				timer = [new Date().getTime()],
+				timeSum = 0,
+				i = 0;
+
+			for (; i < options.iterationsCount; i++) {
+				output = options['function'].apply(null, options['arguments']);
+				timer.push(new Date().getTime());
+				timeSum += timer[timer.length - 1] - timer[timer.length - 2];
+				//(i % 10 === 0) && console.log('[TestSpeed]: 10x iteration'); // to be deleted
+			}
+
+			this.time = Math.round((timeSum * 100) / (timer.length-1) ) / 100;
+			this.output = output;
+			this.options = options;
+
+		}
+
+		TestSpeed.prototype.toString = function () {
+			return '[TestSpeed] [Time]: ' + this.time + 'ms\n[TestSpeed] [Output]: ' + this.output;
+		};
+
+
+		var test = new TestSpeed({
+				'iterationsCount': 100,
+				'arguments': [1000000, 1],
+				'function' : this.findFactorions
+			});
+
+
+		alert(test);
+
+		// alert(findFactorions());
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
