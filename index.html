@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+	</style>
+	<title>FactorionJS</title>
+	<script type="text/javascript" src="factorion.js"></script>
+	<script>
+
+
+		function TestSpeed(options) {
+
+			var output,
+				timer = [new Date().getTime()],
+				timeSum = 0,
+				i = 0;
+
+			for (; i < options.iterationsCount; i++) {
+				output = options['function'].apply(null, options['arguments']);
+				timer.push(new Date().getTime());
+				timeSum += timer[timer.length - 1] - timer[timer.length - 2];
+			}
+
+			this.time = Math.round((timeSum * 100) / (timer.length-1) ) / 100;
+			this.output = output;
+			this.options = options;
+
+		}
+
+		TestSpeed.prototype.toString = function () {
+			return '[TestSpeed] [Time]: ' + this.time + 'ms\n[TestSpeed] [Output]: ' + this.output;
+		};
+
+
+	</script>
+
+
+</head>
+<body>
+
+<h1><a name="factorionjs" class="anchor" href="#factorionjs"><span class="octicon octicon-link"></span></a>FactorionJS</h1>
+
+<p>Javascript-функция для нахождения факторионов, расчитанная на максимальную скорость поиска.</p>
+
+<p>Факторион — такое натуральное число, которое равно сумме факториалов своих цифр.</p>
+
+<h2>
+<a name="%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5" class="anchor" href="#%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5"><span class="octicon octicon-link"></span></a>Использование</h2>
+
+<p>Скрипт <code>factorion.js</code> или его содержание подключается в проект, затем функция достпуна из глобального объекта:</p>
+
+<pre><code>var output = findFactorions(endValue, number);
+</code></pre>
+
+<p>Где <code>output</code> - массив с найденными числами,  <code>endValue</code> - конечное число, до которого будет происходить поиск (по умолчанию - 2540160), <code>number</code> - число, начиная с которого будет происходить поиск (по умолчанию - 1)</p>
+
+<br>
+
+<button onclick="alert(new TestSpeed({'iterationsCount': 10,'arguments': [2540160, 1],'function' : findFactorions}))">Тест</button> Запустить 10 циклов поиска от 1 до 2540160 (примерно 50мс каждый), с выводом статистики (через alert)
+
+
+</body>
+</html>
