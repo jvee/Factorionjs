@@ -25,3 +25,7 @@ var output = findFactorions(endValue, number);
 - В отдельной ветке собрать функцию, которая работает без параметров, поиск происходит между 1 и 2540160. Такая функцию будет почти в 2 раза меньше и, как я думаю, работать еще немного быстрее.
 - Отредактировать комментарии в коде.
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jvee/factorionjs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
